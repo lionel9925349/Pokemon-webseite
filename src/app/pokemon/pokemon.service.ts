@@ -1,3 +1,4 @@
+import { POKEMONS } from './mock-pokemon-list';
 import { Pokemon } from './pokemon';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -33,6 +34,14 @@ export class PokemonService {
     return of (errorValue);
   }
   
+
+
+  deletePokemon(pokemonId: number): Observable<null>{
+
+    return this.http.delete(`api/pokemons/${pokemonId}`).pipe(
+      catchError((error) => this.handleError(error, []))
+    );
+  }
 
   getPokemonTypeList(): string[]{
     return['Plante','Feu','Eau','Insecte','Normal','Electrik','poison','Fee','Vol','Combat','Psy']
