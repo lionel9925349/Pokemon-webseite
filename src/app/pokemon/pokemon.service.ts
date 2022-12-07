@@ -40,6 +40,13 @@ export class PokemonService {
 
   }
 
+  searchPokemonList(term : string): Observable<Pokemon[]>{
+    return this.http.get<Pokemon[]>(`api/pokemon/?name=${term}`).pipe(
+      catchError((error) => this.handleError(error,[])
+      ))
+    ; 
+  }
+
   private log(response: Pokemon[]|Pokemon|undefined){
     console.log(response)
   }
